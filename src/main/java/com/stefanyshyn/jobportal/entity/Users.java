@@ -20,11 +20,11 @@ public class Users {
     @DateTimeFormat(pattern = "dd-MM-yy")
     private Date registrationDate;
     @ManyToOne(cascade = CascadeType.ALL)
-   @JoinColumn(name = "userTypeId", referencedColumnName = "userTypeId")
+    @JoinColumn(name = "userTypeId", referencedColumnName = "userTypeId")
     //  @JoinColumn(name = "user_type_id", referencedColumnName = "user_type_id")
     private UsersType userTypeId;
 
-    public Users(){
+    public Users() {
     }
 
     public Users(int userId, String email, String password,
