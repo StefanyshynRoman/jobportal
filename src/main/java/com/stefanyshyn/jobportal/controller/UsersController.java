@@ -18,9 +18,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 import java.util.Optional;
-
 @Controller
 public class UsersController {
+
     private final UsersTypeService usersTypeService;
     private final UsersService usersService;
 
@@ -32,20 +32,24 @@ public class UsersController {
 
     @GetMapping("/register")
     public String register(Model model) {
-        return getRegister(model);
+        List<UsersType> usersTypes = usersTypeService.getAll();
+        model.addAttribute("getAllTypes", usersTypes);
+        model.addAttribute("user", new Users());
+        return "register";
     }
 
     @PostMapping("/register/new")
     public String userRegistration(@Valid Users users, Model model) {
         Optional<Users> optionalUsers = usersService.getUserByEmail(users.getEmail());
         if (optionalUsers.isPresent()) {
-            model.addAttribute("error",
-                    "Email already registered, try to login or registration with other email.");
-            return getRegister(model);
+            model.addAttribute("error", "Email already registered,try to login or register with other email.");
+            List<UsersType> usersTypes = usersTypeService.getAll();
+            model.addAttribute("getAllTypes", usersTypes);
+            model.addAttribute("user", new Users());
+            return "register";
         }
         usersService.addNew(users);
-        return "dashboard";
-
+        return "redirect:/dashboard/";
     }
 
     @GetMapping("/login")
@@ -55,17 +59,13 @@ public class UsersController {
 
     @GetMapping("/logout")
     public String logout(HttpServletRequest request, HttpServletResponse response) {
+
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
         if (authentication != null) {
             new SecurityContextLogoutHandler().logout(request, response, authentication);
         }
-        return "redirect:/";
-    }
 
-    private String getRegister(Model model) {
-        List<UsersType> usersTypes = usersTypeService.getAll();
-        model.addAttribute("getAllTypes", usersTypes);
-        model.addAttribute("user", new Users());
-        return "register";
+        return "redirect:/";
     }
 }
