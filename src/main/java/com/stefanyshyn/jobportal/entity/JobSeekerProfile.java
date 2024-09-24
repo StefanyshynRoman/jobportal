@@ -8,7 +8,7 @@ import java.util.List;
 @Table(name = "job_seeker_profile")
 public class JobSeekerProfile {
     @Id
-    private int userAccountId;
+    private Integer userAccountId;
     @OneToOne
     @JoinColumn(name = "user_account_id")
     @MapsId
@@ -33,11 +33,11 @@ public class JobSeekerProfile {
         this.users = users;
     }
 
-    public JobSeekerProfile(int userAccount, Users users, String firstName, String lastName,
+    public JobSeekerProfile(Integer userAccountId, Users users, String firstName, String lastName,
                             String city, String state, String country, String workAuthorization,
                             String employmentType, String resume, String company,
                             String profilePhoto, List<Skills> skills) {
-        this.userAccountId = userAccount;
+        this.userAccountId = userAccountId;
         this.users = users;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -51,11 +51,11 @@ public class JobSeekerProfile {
         this.skills = skills;
     }
 
-    public int getUserAccountId() {
+    public Integer getUserAccountId() {
         return userAccountId;
     }
 
-    public void setUserAccountId(int userAccount) {
+    public void setUserAccountId(Integer userAccount) {
         this.userAccountId = userAccount;
     }
 
@@ -149,6 +149,11 @@ public class JobSeekerProfile {
     public void setSkills(List<Skills> skills) {
         this.skills = skills;
     }
+    @Transient
+    public String getPhotosImagePath() {
+        if (profilePhoto == null || userAccountId==null) return null;
+        return "/photos/candidate/" + userAccountId + "/" + profilePhoto;
+    }
 
     @Override
     public String toString() {
@@ -164,7 +169,6 @@ public class JobSeekerProfile {
                 ", employmentType='" + employmentType + '\'' +
                 ", resume='" + resume + '\'' +
                 ", profilePhoto='" + profilePhoto + '\'' +
-                ", skills=" + skills +
                 '}';
     }
 }
