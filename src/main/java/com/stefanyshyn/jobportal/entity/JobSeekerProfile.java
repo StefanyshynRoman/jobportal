@@ -12,7 +12,7 @@ public class JobSeekerProfile {
     @OneToOne
     @JoinColumn(name = "user_account_id")
     @MapsId
-    private Users users;
+    private Users userId;
     private String firstName;
     private String lastName;
     private String city;
@@ -30,15 +30,15 @@ public class JobSeekerProfile {
     }
 
     public JobSeekerProfile(Users users) {
-        this.users = users;
+        this.userId = users;
     }
 
-    public JobSeekerProfile(Integer userAccountId, Users users, String firstName, String lastName,
+    public JobSeekerProfile(Integer userAccountId, Users userId, String firstName, String lastName,
                             String city, String state, String country, String workAuthorization,
                             String employmentType, String resume, String company,
                             String profilePhoto, List<Skills> skills) {
         this.userAccountId = userAccountId;
-        this.users = users;
+        this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.city = city;
@@ -59,12 +59,12 @@ public class JobSeekerProfile {
         this.userAccountId = userAccount;
     }
 
-    public Users getUsers() {
-        return users;
+    public Users getUserId() {
+        return userId;
     }
 
-    public void setUsers(Users users) {
-        this.users = users;
+    public void setUserId(Users users) {
+        this.userId = users;
     }
 
     public String getFirstName() {
@@ -159,7 +159,7 @@ public class JobSeekerProfile {
     public String toString() {
         return "JobSeekerProfile{" +
                 "userAccount=" + userAccountId +
-                ", users=" + users +
+                ", userId=" + userId +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", city='" + city + '\'' +
