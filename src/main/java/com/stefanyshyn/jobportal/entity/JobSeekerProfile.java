@@ -132,8 +132,6 @@ public class JobSeekerProfile {
     }
 
 
-
-
     public String getProfilePhoto() {
         return profilePhoto;
     }
@@ -149,9 +147,10 @@ public class JobSeekerProfile {
     public void setSkills(List<Skills> skills) {
         this.skills = skills;
     }
+
     @Transient
     public String getPhotosImagePath() {
-        if (profilePhoto == null || userAccountId==null) return null;
+        if (profilePhoto == null || userAccountId == null) return null;
         return "/photos/candidate/" + userAccountId + "/" + profilePhoto;
     }
 
