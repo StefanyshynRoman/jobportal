@@ -87,19 +87,19 @@ public class JobPostActivity {
         this.jobCompanyId = jobCompanyId;
     }
 
-    public Boolean getActive() {
+    public Boolean getIsActive() {
         return isActive;
     }
 
-    public void setActive(Boolean active) {
+    public void setIsActive(Boolean active) {
         isActive = active;
     }
 
-    public Boolean getSave() {
+    public Boolean getIsSaved() {
         return isSaved;
     }
 
-    public void setSave(Boolean save) {
+    public void setIsSaved(Boolean save) {
         isSaved = save;
     }
 
