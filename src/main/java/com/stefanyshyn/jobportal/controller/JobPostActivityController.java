@@ -159,6 +159,7 @@ public class JobPostActivityController {
 
         return "dashboard";
     }
+
     @GetMapping("/dashboard/add")
     public String addJobs(Model model) {
         model.addAttribute("jobPostActivity", new JobPostActivity());

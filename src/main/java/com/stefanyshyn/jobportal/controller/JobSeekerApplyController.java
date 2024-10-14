@@ -68,7 +68,7 @@ public class JobSeekerApplyController {
                 }
             }
         }
-        JobSeekerApply jobSeekerApply=new JobSeekerApply();
+        JobSeekerApply jobSeekerApply = new JobSeekerApply();
         model.addAttribute("applyJob", jobDetails);
 
         model.addAttribute("jobDetails", jobDetails);
