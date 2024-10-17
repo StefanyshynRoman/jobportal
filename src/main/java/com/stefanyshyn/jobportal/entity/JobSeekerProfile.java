@@ -29,8 +29,8 @@ public class JobSeekerProfile {
     public JobSeekerProfile() {
     }
 
-    public JobSeekerProfile(Users users) {
-        this.userId = users;
+    public JobSeekerProfile(Users userId) {
+        this.userId = userId;
     }
 
     public JobSeekerProfile(Integer userAccountId, Users userId, String firstName, String lastName,
